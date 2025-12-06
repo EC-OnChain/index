@@ -1,368 +1,399 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Position Sizing Calculator</title>
-    <style>
-        /* CSS Styling for Dark Theme and Layout */
-        body {
-            font-family: Arial, sans-serif; /* UNIFIED FONT: Set Arial/sans-serif for the entire page */
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text color */
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Sizing Calculator</title>
+    <style>
+        /* CSS Styling for Dark Theme and Layout */
+        body {
+            font-family: Arial, sans-serif; /* UNIFIED FONT: Set Arial/sans-serif for the entire page */
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light text color */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
 
-        .container {
-            width: 900px;
-            max-width: 100%;
-            background-color: #1e1e1e; /* Slightly lighter inner background */
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        }
+        .container {
+            width: 900px;
+            max-width: 100%;
+            background-color: #1e1e1e; /* Slightly lighter inner background */
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
 
-        /* Input Section Styling */
-        .input-section {
+        /* HEADER AND GUIDE BUTTON STYLES (NEW/UPDATED) */
+        .header-bar {
             display: flex;
-            gap: 20px;
+            justify-content: space-between; 
+            align-items: center; 
             margin-bottom: 25px;
-            align-items: flex-end; 
         }
 
-        .input-group label {
-            display: block;
+        .guide-button {
+            padding: 8px 12px;
+            background-color: #007bff; /* Blue background to stand out */
+            color: white;
+            text-decoration: none;
             font-size: 14px;
-            margin-bottom: 5px;
-            color: #999;
-        }
-
-        /* Styling for Account Size Input */
-        .input-group input[type="number"] {
-            background-color: #2c2c2c; 
-            border: 1px solid #444;
-            color: #a9ffab; /* Appealing light green text color */
-            padding: 10px;
             border-radius: 4px;
-            font-size: 18px;
-            width: 150px;
-            box-sizing: border-box;
-        }
-
-        /* Risk Profile Buttons */
-        .risk-profile {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end; 
-        }
-
-        .risk-buttons {
-            display: flex;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .risk-btn {
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
             transition: background-color 0.2s;
-            background-color: #333;
-            color: #aaa;
+            /* Pushes the button to the right side of the main content */
+            margin-left: auto; 
+            margin-right: 0; 
         }
 
-        .risk-btn.active {
-            background-color: #007bff; /* Blue color from image */
-            color: white;
+        .guide-button:hover {
+            background-color: #0056b3;
         }
+        /* END NEW STYLES */
 
-        /* Watchlist Section */
-        .watchlist-section {
-            margin-top: 15px;
-        }
+        /* Input Section Styling */
+        .input-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-end; 
+        }
 
-        .watchlist-heading {
-            font-size: 16px;
-            color: #4CAF50; /* Green checkmark color */
-            margin-bottom: 8px;
-        }
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #999;
+        }
 
-        .watchlist-input {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        /* Styling for Account Size Input */
+        .input-group input[type="number"] {
+            background-color: #2c2c2c; 
+            border: 1px solid #444;
+            color: #a9ffab; /* Appealing light green text color */
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 18px;
+            width: 150px;
+            box-sizing: border-box;
+        }
 
-        /* Consistent styling for the watchlist input */
-        .watchlist-input input {
-            width: 60px;
-            background-color: #2c2c2c; 
-            border: 1px solid #444;
-            color: #a9ffab;
-            padding: 10px; 
-            border-radius: 4px; 
-            font-size: 18px; 
-            box-sizing: border-box;
-        }
-        
-        /* Separator */
-        .separator {
-            border: 0;
-            height: 1px;
-            background-color: #333;
-            margin: 20px 0;
-        }
+        /* Risk Profile Buttons */
+        .risk-profile {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; 
+        }
 
-        /* Results Section Styling */
-        .results-heading {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+        .risk-buttons {
+            display: flex;
+            border-radius: 4px;
+            overflow: hidden;
+        }
 
-        .calculated-badge {
-            background-color: #4CAF50;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: normal;
-            margin-left: 10px;
-        }
+        .risk-btn {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+            background-color: #333;
+            color: #aaa;
+        }
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+        .risk-btn.active {
+            background-color: #007bff; /* Blue color from image */
+            color: white;
+        }
 
-        .result-box {
-            padding: 15px;
-            border-radius: 6px; 
-        }
+        /* Watchlist Section */
+        .watchlist-section {
+            margin-top: 15px;
+        }
 
-        .result-box p {
-            margin: 0 0 10px 0;
-            font-size: 14px;
-            color: #bbb;
-        }
+        .watchlist-heading {
+            font-size: 16px;
+            color: #4CAF50; /* Green checkmark color */
+            margin-bottom: 8px;
+        }
 
-        .result-box h2 {
-            margin: 0;
-            font-size: 30px;
-            font-weight: bold;
-        }
+        .watchlist-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        /* Specific Box Colors */
-        .position-size {
-            background-color: #0d47a1; /* Dark Blue */
-        }
+        /* Consistent styling for the watchlist input */
+        .watchlist-input input {
+            width: 60px;
+            background-color: #2c2c2c; 
+            border: 1px solid #444;
+            color: #a9ffab;
+            padding: 10px; 
+            border-radius: 4px; 
+            font-size: 18px; 
+            box-sizing: border-box;
+        }
+        
+        /* Separator */
+        .separator {
+            border: 0;
+            height: 1px;
+            background-color: #333;
+            margin: 20px 0;
+        }
 
-        .total-exposure {
-            background-color: #4a148c; /* Dark Purple */
-        }
+        /* Results Section Styling */
+        .results-heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
 
-        .active-positions {
-            background-color: #1b5e20; /* Dark Green */
-        }
+        .calculated-badge {
+            background-color: #4CAF50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: normal;
+            margin-left: 10px;
+        }
 
-        .exposure-percent {
-            font-size: 12px !important;
-            margin-top: 5px !important;
-        }
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
 
-        .risk-caps {
-            background-color: #333;
-            border: 1px solid #444;
-            color: #e0e0e0;
-            display: flex;
-            flex-direction: column;
-        }
+        .result-box {
+            padding: 15px;
+            border-radius: 6px; 
+        }
 
-        .risk-caps-title {
-            color: #d32f2f; /* Red */
-            font-weight: bold;
-            margin-bottom: 10px !important; 
-        }
-        
-        .risk-caps p {
-            margin: 2px 0; 
-        }
-        
-        .risk-caps strong {
-            font-weight: bold;
-            color: white; 
-        }
+        .result-box p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #bbb;
+        }
 
-        /* Formula Section */
-        .formula-section {
-            padding: 20px;
-            border-radius: 6px;
-        }
+        .result-box h2 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: bold;
+        }
 
-        .formula-section p {
-            margin: 0 0 5px 0;
-        }
+        /* Specific Box Colors */
+        .position-size {
+            background-color: #0d47a1; /* Dark Blue */
+        }
 
-        .formula-text {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px !important;
-        }
-        
-        .calculation-breakdown {
-            color: #e0e0e0;
-            padding: 5px 0;
-        }
-    </style>
+        .total-exposure {
+            background-color: #4a148c; /* Dark Purple */
+        }
+
+        .active-positions {
+            background-color: #1b5e20; /* Dark Green */
+        }
+
+        .exposure-percent {
+            font-size: 12px !important;
+            margin-top: 5px !important;
+        }
+
+        .risk-caps {
+            background-color: #333;
+            border: 1px solid #444;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .risk-caps-title {
+            color: #d32f2f; /* Red */
+            font-weight: bold;
+            margin-bottom: 10px !important; 
+        }
+        
+        .risk-caps p {
+            margin: 2px 0; 
+        }
+        
+        .risk-caps strong {
+            font-weight: bold;
+            color: white; 
+        }
+
+        /* Formula Section */
+        .formula-section {
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .formula-section p {
+            margin: 0 0 5px 0;
+        }
+
+        .formula-text {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 15px !important;
+        }
+        
+        .calculation-breakdown {
+            color: #e0e0e0;
+            padding: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="input-section">
-            <div class="input-group">
-                <label for="accountSize">Account Size</label>
-                <input type="number" id="accountSize" value="20000" min="1000" oninput="calculatePositionSize()">
-            </div>
-
-            <div class="input-group risk-profile">
-                <label>Risk Profile</label>
-                <div class="risk-buttons">
-                    <button class="risk-btn active" data-exposure="0.75" onclick="setRiskProfile(this)">Conservative (75%)</button>
-                    <button class="risk-btn" data-exposure="0.85" onclick="setRiskProfile(this)">Aggressive (85%)</button>
-                </div>
-            </div>
+    <div class="container">
+        <div class="header-bar">
+            <h1 style="font-size: 24px; color: #e0e0e0;">Position Sizing Calculator</h1>
+            
+            <a href="user_guide.html" class="guide-button">Beginner's Guide</a>
         </div>
+                <div class="input-section">
+            <div class="input-group">
+                <label for="accountSize">Account Size</label>
+                <input type="number" id="accountSize" value="20000" min="1000" oninput="calculatePositionSize()">
+            </div>
+
+            <div class="input-group risk-profile">
+                <label>Risk Profile</label>
+                <div class="risk-buttons">
+                    <button class="risk-btn active" data-exposure="0.75" onclick="setRiskProfile(this)">Conservative (75%)</button>
+                    <button class="risk-btn" data-exposure="0.85" onclick="setRiskProfile(this)">Aggressive (85%)</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="watchlist-section">
+            <p class="watchlist-heading">Positions</p>
+            <div class="watchlist-input">
+                <input type="number" id="watchlistCount" value="45" min="1" oninput="calculatePositionSize()">
+                <p>assets</p>
+            </div>
+        </div>
+
+        <hr class="separator">
         
-        <div class="watchlist-section">
-            <p class="watchlist-heading">Positions</p>
-            <div class="watchlist-input">
-                <input type="number" id="watchlistCount" value="45" min="1" oninput="calculatePositionSize()">
-                <p>assets</p>
-            </div>
-        </div>
+        <div class="results-heading">Position Sizing Results <span class="calculated-badge">Calculated</span></div>
+        <div class="results-grid">
+            
+            <div class="result-box position-size">
+                <p>Position Size Per Trade</p>
+                <h2 id="positionSizeOutput">$500</h2>
+            </div>
 
-        <hr class="separator">
+            <div class="result-box active-positions">
+                <p>Maximum Active Positions</p>
+                <h2 id="maxPositionsOutput">33</h2>
+                <p class="active-details" id="maxPositionsDetails">45 &times; 75%</p>
+            </div>
+            
+            <div class="result-box total-exposure">
+                <p>Total Portfolio Exposure</p>
+                <h2 id="exposureValueOutput">$16,500</h2>
+                <p class="exposure-percent" id="exposurePercentText">82.5% of account</p>
+            </div>
 
-        <div class="results-heading">Position Sizing Results <span class="calculated-badge">Calculated</span></div>
-        <div class="results-grid">
-            
-            <div class="result-box position-size">
-                <p>Position Size Per Trade</p>
-                <h2 id="positionSizeOutput">$500</h2>
-            </div>
+            <div class="result-box risk-caps">
+                <p class="risk-caps-title">⭕ Risk Caps</p>
+                <p>Single Position: <strong>$5,000</strong></p>
+                <p>Sector Limit: <strong>$20,000</strong></p>
+                <p>Fund Ceiling: <strong>$85,000</strong></p>
+            </div>
+        </div>
 
-            <div class="result-box active-positions">
-                <p>Maximum Active Positions</p>
-                <h2 id="maxPositionsOutput">33</h2>
-                <p class="active-details" id="maxPositionsDetails">45 &times; 75%</p>
-            </div>
-            
-            <div class="result-box total-exposure">
-                <p>Total Portfolio Exposure</p>
-                <h2 id="exposureValueOutput">$16,500</h2>
-                <p class="exposure-percent" id="exposurePercentText">82.5% of account</p>
-            </div>
+        <div class="formula-section">
+            <p>Position Sizing Formula</p>
+            <p class="formula-text">
+                Position Size = Fund Value &divide; (Watchlist Count &times; Exposure %)
+            </p>
+            <p class="calculation-breakdown" id="formulaBreakdown">
+            </p>
+        </div>
 
-            <div class="result-box risk-caps">
-                <p class="risk-caps-title">⭕ Risk Caps</p>
-                <p>Single Position: <strong>$5,000</strong></p>
-                <p>Sector Limit: <strong>$20,000</strong></p>
-                <p>Fund Ceiling: <strong>$85,000</strong></p>
-            </div>
-        </div>
+    </div>
 
-        <div class="formula-section">
-            <p>Position Sizing Formula</p>
-            <p class="formula-text">
-                Position Size = Fund Value &divide; (Watchlist Count &times; Exposure %)
-            </p>
-            <p class="calculation-breakdown" id="formulaBreakdown">
-            </p>
-        </div>
+    <script>
+        let currentExposure = 0.75; 
 
-    </div>
+        /**
+         * Sets the active risk profile and updates the exposure percentage.
+         */
+        function setRiskProfile(selectedButton) {
+            document.querySelectorAll('.risk-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            selectedButton.classList.add('active');
+            currentExposure = parseFloat(selectedButton.getAttribute('data-exposure'));
+            calculatePositionSize();
+        }
 
-    <script>
-        let currentExposure = 0.75; 
+        /**
+         * The core function to read inputs and perform the position sizing calculation.
+         */
+        function calculatePositionSize() {
+            // 1. Get Inputs
+            const accountSize = parseFloat(document.getElementById('accountSize').value) || 0;
+            const watchlistCount = parseInt(document.getElementById('watchlistCount').value) || 0;
+            const exposurePercent = currentExposure;
 
-        /**
-         * Sets the active risk profile and updates the exposure percentage.
-         */
-        function setRiskProfile(selectedButton) {
-            document.querySelectorAll('.risk-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            selectedButton.classList.add('active');
-            currentExposure = parseFloat(selectedButton.getAttribute('data-exposure'));
-            calculatePositionSize();
-        }
+            // Check for valid inputs
+            if (accountSize <= 0 || watchlistCount <= 0 || exposurePercent <= 0) {
+                const defaultZero = '$0';
+                document.getElementById('positionSizeOutput').textContent = defaultZero;
+                document.getElementById('maxPositionsOutput').textContent = '0';
+                document.getElementById('maxPositionsDetails').innerHTML = '0 &times; 0%';
+                document.getElementById('exposureValueOutput').textContent = defaultZero;
+                document.getElementById('exposurePercentText').textContent = '0.0% of account';
+                document.getElementById('formulaBreakdown').textContent = '';
+                return;
+            }
 
-        /**
-         * The core function to read inputs and perform the position sizing calculation.
-         */
-        function calculatePositionSize() {
-            // 1. Get Inputs
-            const accountSize = parseFloat(document.getElementById('accountSize').value) || 0;
-            const watchlistCount = parseInt(document.getElementById('watchlistCount').value) || 0;
-            const exposurePercent = currentExposure;
+            // 2. Calculate Maximum Active Positions (Rounded Down/Floor)
+            const rawMaxActive = watchlistCount * exposurePercent;
+            const maxActivePositions = Math.floor(rawMaxActive);
 
-            // Check for valid inputs
-            if (accountSize <= 0 || watchlistCount <= 0 || exposurePercent <= 0) {
-                const defaultZero = '$0';
-                document.getElementById('positionSizeOutput').textContent = defaultZero;
-                document.getElementById('maxPositionsOutput').textContent = '0';
-                document.getElementById('maxPositionsDetails').innerHTML = '0 &times; 0%';
-                document.getElementById('exposureValueOutput').textContent = defaultZero;
-                document.getElementById('exposurePercentText').textContent = '0.0% of account';
-                document.getElementById('formulaBreakdown').textContent = '';
-                return;
-            }
+            if (maxActivePositions === 0) {
+                document.getElementById('positionSizeOutput').textContent = 'N/A';
+                return;
+            }
 
-            // 2. Calculate Maximum Active Positions (Rounded Down/Floor)
-            const rawMaxActive = watchlistCount * exposurePercent;
-            const maxActivePositions = Math.floor(rawMaxActive);
+            // 3. Calculate Position Size Per Trade
+            let positionSize = accountSize / maxActivePositions;
+            
+            // 4. Calculate Total Portfolio Exposure (for display)
+            const totalExposureValue = positionSize * maxActivePositions;
+            const totalExposurePercent = (totalExposureValue / accountSize) * 100;
 
-            if (maxActivePositions === 0) {
-                document.getElementById('positionSizeOutput').textContent = 'N/A';
-                return;
-            }
+            // Currency formatter
+            const formatter = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            });
+            
+            // 5. Update Outputs
+            document.getElementById('positionSizeOutput').textContent = formatter.format(positionSize);
+            document.getElementById('maxPositionsOutput').textContent = maxActivePositions;
+            document.getElementById('maxPositionsDetails').innerHTML = `${watchlistCount} &times; ${Math.round(exposurePercent * 100)}%`; 
+            document.getElementById('exposureValueOutput').textContent = formatter.format(totalExposureValue);
+            document.getElementById('exposurePercentText').textContent = `${totalExposurePercent.toFixed(1)}% of account`;
 
-            // 3. Calculate Position Size Per Trade
-            let positionSize = accountSize / maxActivePositions;
-            
-            // 4. Calculate Total Portfolio Exposure (for display)
-            const totalExposureValue = positionSize * maxActivePositions;
-            const totalExposurePercent = (totalExposureValue / accountSize) * 100;
+            // 6. Formula Breakdown
+            const formulaBreakdownElement = document.getElementById('formulaBreakdown');
+            
+            formulaBreakdownElement.innerHTML = 
+                `${formatter.format(positionSize)} = ${formatter.format(accountSize)} &divide; (${watchlistCount} &times; ${Math.round(exposurePercent * 100)}%) = ${formatter.format(accountSize)} &divide; ${maxActivePositions}`;
+        }
 
-            // Currency formatter
-            const formatter = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-            });
-            
-            // 5. Update Outputs
-            document.getElementById('positionSizeOutput').textContent = formatter.format(positionSize);
-            document.getElementById('maxPositionsOutput').textContent = maxActivePositions;
-            document.getElementById('maxPositionsDetails').innerHTML = `${watchlistCount} &times; ${Math.round(exposurePercent * 100)}%`; 
-            document.getElementById('exposureValueOutput').textContent = formatter.format(totalExposureValue);
-            document.getElementById('exposurePercentText').textContent = `${totalExposurePercent.toFixed(1)}% of account`;
-
-            // 6. Formula Breakdown
-            const formulaBreakdownElement = document.getElementById('formulaBreakdown');
-            
-            formulaBreakdownElement.innerHTML = 
-                `${formatter.format(positionSize)} = ${formatter.format(accountSize)} &divide; (${watchlistCount} &times; ${Math.round(exposurePercent * 100)}%) = ${formatter.format(accountSize)} &divide; ${maxActivePositions}`;
-        }
-
-        // Run the calculation once on page load with default values
-        document.addEventListener('DOMContentLoaded', calculatePositionSize);
-    </script>
+        // Run the calculation once on page load with default values
+        document.addEventListener('DOMContentLoaded', calculatePositionSize);
+    </script>
 </body>
 </html>
