@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Sizing Calculator User Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 30px;
+        }
+        .guide-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #4CAF50; /* Green highlight for the title */
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #007bff; /* Blue for section headers */
+            margin-top: 25px;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #2c2c2c;
+            border-left: 5px solid #4CAF50;
+            border-radius: 4px;
+        }
+        .step strong {
+            color: #a9ffab;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .back-button:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="guide-container">
+        <h1>📊 Position Sizing Calculator User Guide</h1>
+        <p>This calculator helps you determine the appropriate size for each trade based on your total account value and risk tolerance. It uses the simple principle of dividing your total capital by the number of active positions you can safely hold.</p>
+
+        <h2>Step 1: Input Your Capital</h2>
+        <div class="step">
+            <p>1. Enter your total **Account Size** (e.g., $20,000).</p>
+        </div>
+
+        <h2>Step 2: Choose Your Risk Profile</h2>
+        <div class="step">
+            <p>1. Select a **Risk Profile** (Conservative or Aggressive). This percentage determines the maximum portion of your watchlist you are willing to risk being actively invested at any given time.</p>
+        </div>
+
+        <h2>Step 3: Define Your Watchlist</h2>
+        <div class="step">
+            <p>1. Enter the total number of **assets** in your **Positions** input (e.g., 45 assets). This is the total number of assets you monitor and consider trading.</p>
+            <p>2. The calculator uses this to determine the **Maximum Active Positions** (e.g., 45 assets × 75% Conservative exposure = 33 active positions).</p>
+        </div>
+
+        <h2>Step 4: Review Your Results</h2>
+        <div class="step">
+            <p>1. **Position Size Per Trade:** This is the maximum dollar amount you should put into a single trade.</p>
+            <p>2. **Total Portfolio Exposure:** This shows the total amount of capital that will be tied up if you are fully invested in the maximum number of active positions.</p>
+            <p>3. **Risk Caps:** Always observe the fixed **Single Position** limit (e.g., $5,000) to protect against over-concentration in any single asset.</p>
+        </div>
+
+        <a href="index.html" class="back-button">← Back to Calculator</a>
+    </div>
+</body>
+</html>
